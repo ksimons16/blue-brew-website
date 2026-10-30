@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blue Brew Coffee Roasters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Yellowtail&family=DM+Sans:wght@400;500;700&family=Oswald:wght@500;600&family=VT323&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#21476a; --blue:#2b5b83; --sky:#e2ecf5; --gold:#f7c21b; --cream:#ffffff; --paper:#f2f6fa;
+  --red:#d0202f; --red-lt:#ff4b57; --brown:#5a3826; --ink:#14213d; --muted:#5b6478;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.55}
+a{color:inherit}
+.wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+h1,h2,h3{font-family:'Alfa Slab One',Georgia,serif;font-weight:400;line-height:1.08;color:var(--navy)}
+h2{font-size:clamp(2rem,4.4vw,3rem)}
+.eyebrow{display:inline-block;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.78rem;color:var(--red);margin-bottom:10px}
+.script{font-family:'Yellowtail',cursive;font-weight:400}
+section{padding:90px 0}
+.lead{color:var(--muted);font-size:1.1rem;max-width:620px;margin-top:14px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:999px;font-weight:700;text-decoration:none;border:2px solid var(--navy);transition:transform .15s,box-shadow .15s;cursor:pointer;font-size:1rem;font-family:inherit}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--navy)}
+.btn-primary{background:var(--red);border-color:var(--red);color:#fff}
+.btn-primary:hover{box-shadow:0 6px 0 #8d1626}
+.btn-ghost{background:transparent;color:var(--navy)}
+.btn-light{background:#fff;color:var(--navy);border-color:#fff}
+
+/* nav */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:2px dashed rgba(208,32,47,.45)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:76px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo img{height:52px;width:auto;display:block}
+.links{display:flex;gap:26px;align-items:center}
+.links a{text-decoration:none;font-weight:500;font-size:.95rem}
+.links a:not(.btn):hover{color:var(--red)}
+.links .btn{padding:10px 18px;font-size:.9rem}
+.menu-toggle{display:none;background:none;border:0;font-size:1.8rem;color:var(--navy);cursor:pointer}
+
+/* hero */
+.hero{padding:60px 0 80px;position:relative;overflow:hidden;background:radial-gradient(circle at 78% 45%,#e6eff8 0,#fff 55%)}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,6vw,4.6rem)}
+.hero h1 .script{color:var(--red);font-size:1.15em;display:inline-block;transform:rotate(-4deg)}
+.hero .ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+.badges{display:flex;gap:18px;flex-wrap:wrap;margin-top:30px}
+.badge{display:flex;align-items:center;gap:8px;font-weight:600;font-size:.9rem;color:var(--navy)}
+.badge i{width:30px;height:30px;border-radius:50%;background:var(--sky);display:grid;place-items:center;font-style:normal}
+.hero-art{position:relative}
+.hero-art img{width:100%;height:auto;display:block;filter:drop-shadow(0 18px 24px rgba(33,71,106,.18));animation:bob 5s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+
+/* ticker */
+.ticker{background:var(--navy);color:#fff;overflow:hidden;padding:16px 0;border-top:4px solid var(--red);border-bottom:4px solid var(--red)}
+.track{display:flex;gap:40px;white-space:nowrap;animation:scroll 28s linear infinite;width:max-content}
+.track span{font-family:'Alfa Slab One',serif;font-size:1.25rem;letter-spacing:.04em}
+.track b{color:var(--red);font-weight:400}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+.stat{background:var(--paper);border:2px solid var(--navy);border-radius:16px;padding:16px;text-align:center}
+.stat b{display:block;font-family:'Alfa Slab One',serif;font-size:1.6rem;color:var(--red)}
+.stat span{font-size:.85rem;color:var(--muted)}
+.ballcard{background:var(--navy);border-radius:26px;padding:34px;color:#fff;position:relative;overflow:hidden}
+.ballcard h3{color:#fff;font-size:1.6rem;margin-bottom:12px}
+.ballcard p{color:#d5e2ef}
+.ballcard ul{list-style:none;margin-top:18px;display:grid;gap:10px}
+.ballcard li::before{content:"⚾ ";}
+
+/* steps */
+.steps{background:var(--paper);border-top:2px solid #dbe5ef;border-bottom:2px solid #dbe5ef}
+.step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+.step{background:#fff;border-radius:22px;padding:30px;border:2px solid var(--navy);position:relative}
+.step .inning{font-family:'Yellowtail',cursive;color:var(--red);font-size:1.6rem}
+.step h3{font-size:1.4rem;margin:6px 0 10px}
+.step p{color:var(--muted)}
+.step .num{position:absolute;top:-18px;right:22px;width:44px;height:44px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-family:'Alfa Slab One',serif;border:3px solid #fff;box-shadow:0 0 0 2px var(--red)}
+
+/* menu scoreboard */
+.board{margin-top:44px;background:var(--navy);border-radius:26px;border:5px solid #fff;box-shadow:0 0 0 3px var(--navy),0 18px 40px rgba(33,71,106,.28);color:#fff;overflow:hidden;font-family:'Oswald','DM Sans',sans-serif}
+.board-top{display:grid;grid-template-columns:repeat(4,1fr) 1.2fr;border-bottom:3px solid rgba(255,255,255,.75)}
+.board-top>div{padding:16px 10px;text-align:center;border-right:2px solid rgba(255,255,255,.25);font-weight:600;font-size:1.25rem;letter-spacing:.04em;text-transform:uppercase}
+.board-top>div:last-child{border-right:0;display:grid;place-items:center;font-size:1.5rem}
+.led{font-family:'VT323',monospace;color:var(--gold);font-size:2rem;line-height:1;display:block}
+.dots{display:flex;gap:8px;justify-content:center;margin-top:8px}
+.dots i{width:16px;height:16px;border-radius:50%;background:#4c7396}
+.dots i.on{background:var(--gold)}
+.board-body{display:grid;grid-template-columns:1fr 280px}
+.lineup{padding:20px 26px;border-right:3px solid rgba(255,255,255,.75)}
+.lineup-head{display:grid;grid-template-columns:1fr 70px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;padding-bottom:6px}
+.lineup-head span:last-child{text-align:right}
+.row{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1.3fr) 70px;gap:14px;align-items:baseline;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.row:last-child{border-bottom:0}
+.row b{font-weight:600;text-transform:uppercase;font-size:1.12rem;letter-spacing:.02em;position:relative}
+.row b .star{color:var(--gold);position:absolute;left:-20px}
+.row span{color:#dce7f2;font-size:1rem}
+.row .led{font-size:1.75rem;text-align:right}
+.featured{padding:26px 22px;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:12px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0))}
+.featured h4{font-weight:600;font-size:1.5rem;text-transform:uppercase;letter-spacing:.04em}
+.featured .led{font-size:2.4rem;line-height:1.05}
+.featured .stars{color:#fff;font-size:1.3rem;letter-spacing:.3em}
+.featured p{text-transform:uppercase;font-weight:500;font-size:1.05rem;line-height:1.3}
+.linescore{border-top:3px solid rgba(255,255,255,.75);padding:16px 22px;display:grid;grid-template-columns:130px repeat(12,1fr);gap:6px;align-items:center;text-align:center;font-weight:600}
+.linescore .lbl{text-align:left;text-transform:uppercase;font-size:1.05rem}
+.linescore .h{font-size:1rem}
+.linescore .c{background:#132c44;border-radius:4px;padding:3px 0}
+.linescore .c .led{font-size:1.6rem}
+.board-foot{text-align:center;padding:0 0 14px;font-weight:500;font-size:1rem;color:#e2ebf4}
+@media (max-width:900px){
+  .board-top{grid-template-columns:repeat(3,1fr)}
+  .board-top>div:nth-child(4),.board-top>div:last-child{display:none}
+  .board-body{grid-template-columns:1fr}
+  .lineup{border-right:0;border-bottom:3px solid rgba(255,255,255,.75);padding:18px 18px 18px 30px}
+  .row{grid-template-columns:1fr 64px}
+  .row span{grid-column:1;font-size:.92rem;margin-top:-6px}
+  .row .led{grid-row:1;grid-column:2}
+  .linescore{display:none}
+}
+
+/* beans */
+.beans{background:linear-gradient(160deg,var(--navy),#2b5b83);color:#fff}
+.beans h2{color:#fff}
+.beans .lead{color:#c9d9ea}
+.bean-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+.bag{background:rgba(255,255,255,.07);border:2px solid rgba(255,255,255,.18);border-radius:22px;padding:26px 24px 22px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.bag img{width:78%;max-width:240px;height:auto;margin:0 auto 18px;display:block;filter:drop-shadow(0 16px 18px rgba(0,0,0,.35));transition:transform .25s}
+.bag:hover img{transform:translateY(-6px) rotate(-1.5deg)}
+.best{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:999px;margin-bottom:10px}
+.bag h3{color:#fff;font-size:1.35rem}
+.bag .roast{color:var(--red-lt);font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;margin:6px 0 8px}
+.bag .notes{color:#fff;font-weight:700;margin-bottom:14px}
+.bag dl{width:100%;display:grid;gap:6px;border-top:1px dashed rgba(255,255,255,.25);padding-top:12px;font-size:.9rem}
+.bag dl div{display:flex;justify-content:space-between;gap:10px;text-align:right}
+.bag-buy{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:16px;padding-top:14px;border-top:1px dashed rgba(255,255,255,.25)}
+.bag-price{font-family:'Alfa Slab One',serif;font-size:1.7rem;color:var(--gold)}
+.bag-buy .btn{padding:10px 18px;font-size:.92rem}
+.bag dt{color:#b7cbdf;text-align:left}.bag dd{color:#fff}
+.beans .center{text-align:center;margin-top:36px}
+
+/* merch */
+.tee-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+.tee{background:#fff;border:2px solid var(--navy);border-radius:24px;padding:22px;display:flex;flex-direction:column}
+.tee-img{background:#fff;border-radius:16px;overflow:hidden;aspect-ratio:1/1}
+.tee-img img{width:100%;height:100%;object-fit:contain;display:block;transition:opacity .2s}
+.tee-toggle{display:flex;gap:6px;justify-content:center;margin:12px 0 14px}
+.tee-toggle button{font:inherit;font-weight:700;font-size:.85rem;padding:6px 16px;border-radius:999px;border:2px solid var(--navy);background:#fff;color:var(--navy);cursor:pointer}
+.tee-toggle button.on{background:var(--navy);color:#fff}
+.tee h3{font-size:1.35rem}
+.tee-color{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--red);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;margin:6px 0 8px}
+.tee-color i{width:14px;height:14px;border-radius:50%;border:2px solid var(--navy)}
+.tee p{color:var(--muted);font-size:.95rem;flex:1;margin-bottom:16px}
+.tee .btn{justify-content:center}
+.tee-buy{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.tee-price{font-family:'Alfa Slab One',serif;font-size:1.6rem;color:var(--navy)}
+.sizes{display:flex;gap:6px}
+.sizes button{font:inherit;font-weight:700;font-size:.85rem;min-width:40px;height:40px;border-radius:10px;border:2px solid #d8deea;background:#fff;color:var(--navy);cursor:pointer}
+.sizes button.on{border-color:var(--navy);background:var(--navy);color:#fff}
+@media (max-width:900px){.tee-grid{grid-template-columns:1fr;max-width:440px;margin-left:auto;margin-right:auto}}
+/* events */
+.event-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+.event{background:#fff;border-radius:18px;padding:24px;border-left:6px solid var(--blue);box-shadow:0 2px 0 #dbe5ef}
+.event .ic{font-size:1.8rem}
+.event h3{font-size:1.15rem;margin:8px 0 6px}
+.event p{color:var(--muted);font-size:.95rem}
+
+/* packages */
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px;align-items:stretch}
+.pkg{background:#fff;border:2px solid var(--navy);border-radius:24px;padding:32px 28px;display:flex;flex-direction:column;position:relative}
+.pkg.fav{background:var(--navy);color:#fff;transform:translateY(-10px)}
+.pkg.fav h3,.pkg.fav .hours{color:#fff}
+.pkg .flag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-weight:700;font-size:.78rem;padding:6px 14px;border-radius:999px;letter-spacing:.06em;white-space:nowrap}
+.pkg h3{font-size:1.7rem}
+.pkg .hours{font-family:'Yellowtail',cursive;font-size:1.5rem;color:var(--red);margin:4px 0 16px}
+.pkg ul{list-style:none;display:grid;gap:9px;margin-bottom:24px;flex:1}
+.pkg li::before{content:"✓ ";color:var(--red);font-weight:700}
+.pkg .price{font-weight:700;margin-bottom:16px}
+.pkg .btn{justify-content:center}
+.note{text-align:center;color:var(--muted);margin-top:26px;font-size:.95rem}
+
+/* why */
+.why{background:var(--paper)}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px}
+.why-card{border-radius:20px;padding:26px;background:#fff;border:2px solid #dbe5ef;text-align:center}
+.why-card .ic{width:62px;height:62px;border-radius:50%;background:var(--sky);display:grid;place-items:center;font-size:1.7rem;margin:0 auto 14px}
+.why-card h3{font-size:1.15rem;margin-bottom:6px}
+.why-card p{color:var(--muted);font-size:.93rem}
+
+/* faq */
+.faq-list{max-width:780px;margin:40px auto 0;display:grid;gap:12px}
+details{background:#fff;border:2px solid var(--navy);border-radius:16px;padding:18px 22px}
+summary{cursor:pointer;font-weight:700;color:var(--navy);list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";font-family:'Alfa Slab One',serif;color:var(--red);font-size:1.3rem;line-height:1}
+details[open] summary::after{content:"–"}
+details p{color:var(--muted);margin-top:10px}
+
+/* booking */
+.book{background:var(--navy);color:#fff}
+.book h2{color:#fff}
+.book-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:46px;align-items:start}
+.book .lead{color:#c9d9ea}
+.info{margin-top:28px;display:grid;gap:14px}
+.info div{display:flex;gap:12px;align-items:flex-start;color:#dbe6f2}
+.info b{color:#fff;display:block}
+form{background:#fff;color:var(--ink);border-radius:24px;padding:30px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+form .full{grid-column:1/-1}
+label{font-weight:700;font-size:.82rem;color:var(--navy);display:grid;gap:6px}
+input,select,textarea{font:inherit;padding:12px 14px;border:2px solid #d8deea;border-radius:12px;background:#fbfcff;color:var(--ink)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue)}
+textarea{min-height:100px;resize:vertical}
+form .btn{justify-content:center}
+.result{grid-column:1/-1;display:none;background:var(--sky);border-radius:14px;padding:16px;font-size:.92rem}
+.result pre{white-space:pre-wrap;font-family:inherit;margin:10px 0;color:var(--ink)}
+
+footer{background:#163049;color:#b9cbdd;padding:46px 0 30px}
+.foot{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start}
+footer .script{font-size:2.2rem;color:#fff}
+footer a{text-decoration:none}
+footer a:hover{color:#fff}
+.foot-links{display:flex;gap:22px;flex-wrap:wrap}
+.copy{border-top:1px solid rgba(255,255,255,.12);margin-top:30px;padding-top:20px;font-size:.85rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+@media (max-width:900px){
+  .hero-grid,.about-grid,.book-grid{grid-template-columns:1fr}
+  .hero-art{max-width:420px;margin:0 auto}
+  .step-grid,.pkg-grid,.bean-grid{grid-template-columns:1fr}
+  .pkg.fav{transform:none}
+  .event-grid{grid-template-columns:1fr 1fr}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .menu-grid{grid-template-columns:1fr}
+  .links{display:none;position:absolute;top:76px;left:0;right:0;background:var(--cream);flex-direction:column;padding:20px;border-bottom:2px solid var(--navy)}
+  .links.open{display:flex}
+  .menu-toggle{display:block}
+}
+@media (max-width:560px){
+  section{padding:66px 0}
+  .event-grid,.why-grid{grid-template-columns:1fr}
+  form{grid-template-columns:1fr}
+  .stat-row{grid-template-columns:1fr 1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="logo" aria-label="Blue Brew Coffee Roasters home"><img src="logo-badge.webp" alt="Blue Brew Coffee Roasters"></a>
+    <button class="menu-toggle" aria-label="Open menu" onclick="document.querySelector('.links').classList.toggle('open')">☰</button>
+    <nav class="links" onclick="if(event.target.tagName==='A')this.classList.remove('open')">
+      <a href="#how">How it works</a>
+      <a href="#menu">Menu</a>
+      <a href="#beans">Beans</a>
+      <a href="#merch">Merch</a>
+      <a href="#events">Events</a>
+      <a href="#packages">Packages</a>
+      <a href="#faq">FAQ</a>
+      <a href="tel:+19493946700" style="font-weight:700;color:var(--red)">949-394-6700</a>
+      <a href="#book" class="btn btn-primary">Check your date</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Fresh-roasted coffee · Ontario, CA</span>
+      <h1>Coffee that goes <span class="script">yard.</span></h1>
+      <p class="lead">Fresh-roasted beans, Home Run Lattes, Cafe de Olla and cold brew, and a ballpark-style coffee cart that brings the whole experience to your event. Step up to the plate. The first cup is calling.</p>
+      <div class="ctas">
+        <a href="#book" class="btn btn-primary">Book the coffee cart →</a>
+        <a href="#menu" class="btn btn-ghost">See the menu</a>
+      </div>
+      <div class="badges">
+        <span class="badge"><i>🔥</i>Three signature blends</span>
+        <span class="badge"><i>🛒</i>Mobile cart for events</span>
+        <a class="badge" href="https://www.google.com/maps/search/?api=1&amp;query=1945+E+Riverside+Dr+Suite+3A+Ontario+CA+91761" target="_blank" rel="noopener" style="text-decoration:none"><i>📍</i>1945 E Riverside Dr, Ontario</a>
+      </div>
+    </div>
+    <div class="hero-art"><img src="logo-full.webp" alt="Blue Brew Coffee Roasters logo with the baseball mascot holding a coffee and a bat"></div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <div class="track">
+    <span>ROASTED FRESH <b>⚾</b></span><span>CAFE DE OLLA <b>⚾</b></span><span>GIBBY'S GRAND SLAM <b>⚾</b></span><span>NO HITTER · DOUBLE PLAY · GRAND SLAM <b>⚾</b></span><span>EVENTS &amp; CATERING <b>⚾</b></span><span>JET FUEL COLD BREW <b>⚾</b></span>
+    <span>ROASTED FRESH <b>⚾</b></span><span>CAFE DE OLLA <b>⚾</b></span><span>GIBBY'S GRAND SLAM <b>⚾</b></span><span>NO HITTER · DOUBLE PLAY · GRAND SLAM <b>⚾</b></span><span>EVENTS &amp; CATERING <b>⚾</b></span><span>JET FUEL COLD BREW <b>⚾</b></span>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <span class="eyebrow">Our story</span>
+      <h2>Every cup is a home run.</h2>
+      <p class="lead">Blue Brew is a hometown coffee brand with a ballpark heart. Our three signature blends are roasted fresh in small batches with our partners at Lucky's in Claremont. Every drink gets pulled with the same care, whether you visit our baseball-themed shop or book the cart for your event.</p>
+      <div class="stat-row">
+        <div class="stat"><b>3</b><span>signature blends</span></div>
+        <div class="stat"><b>Fresh</b><span>never stale</span></div>
+        <div class="stat"><b>Local</b><span>Inland Empire</span></div>
+      </div>
+    </div>
+    <div class="ballcard">
+      <h3>Ballpark coffee, done right</h3>
+      <p>Think pennants, pinstripes and the smell of fresh-roasted coffee. Our space and our cart both bring that game-day energy, minus the stadium prices.</p>
+      <ul>
+        <li>Espresso drinks, drip and cold brew</li>
+        <li>El Toro Cafe de Olla, our featured favorite</li>
+        <li>No Hitter, Double Play &amp; Grand Slam blends to take home</li>
+        <li>A friendly barista crew behind the counter</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="steps">
+  <div class="wrap">
+    <span class="eyebrow">How it works</span>
+    <h2>Three innings to your first sip.</h2>
+    <p class="lead">Booking the Blue Brew cart is easy. Here's the game plan.</p>
+    <div class="step-grid">
+      <div class="step"><span class="num">1</span><span class="inning">1st inning</span><h3>Pick your lineup</h3><p>Choose a package and the drinks you want on the menu. We can add a custom drink named after the guest of honor.</p></div>
+      <div class="step"><span class="num">2</span><span class="inning">2nd inning</span><h3>We roll in</h3><p>Our team shows up early, sets up the cart and dials in the espresso, so it's ready when your guests arrive.</p></div>
+      <div class="step"><span class="num">3</span><span class="inning">3rd inning</span><h3>Sip &amp; enjoy</h3><p>Guests order at the cart and get handcrafted drinks made fresh. When it's over, we pack up and leave the spot clean.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="wrap">
+    <span class="eyebrow">The menu</span>
+    <h2>Today's starting lineup.</h2>
+    <p class="lead">Straight off our scoreboard. Same lineup at the shop and on the cart.</p>
+    <div class="board">
+      <div class="board-top">
+        <div>At bat<span class="led">42</span></div>
+        <div>Ball<div class="dots"><i class="on"></i><i></i><i></i></div></div>
+        <div>Strike<div class="dots"><i class="on"></i><i></i></div></div>
+        <div>Out<div class="dots"><i class="on"></i><i></i></div></div>
+        <div>Menu</div>
+      </div>
+      <div class="board-body">
+        <div class="lineup">
+          <div class="lineup-head"><span></span><span>Price</span></div>
+          <div class="row"><b>Home Run Latte</b><span>Classic latte, smooth &amp; balanced</span><em class="led">4.75</em></div>
+          <div class="row"><b><span class="star">★</span>Gibby's Grand Slam</b><span>Quad shot of espresso, mocha</span><em class="led">6.50</em></div>
+          <div class="row"><b>The Dugout Drip</b><span>Our daily drip, always fresh</span><em class="led">3.25</em></div>
+          <div class="row"><b>Samurai Drip</b><span>Precision pour over, pure &amp; refined</span><em class="led">4.25</em></div>
+          <div class="row"><b>Cold Brew</b><span>Smooth, refreshing, and bold</span><em class="led">4.75</em></div>
+          <div class="row"><b>All Americano</b><span>Bold shot of espresso with hot water</span><em class="led">4.25</em></div>
+          <div class="row"><b>The Cubano</b><span>Equal part espresso &amp; creamy espumita</span><em class="led">4.25</em></div>
+          <div class="row"><b>Benny the Jet Fuel Cold Brew</b><span>Jet fuel for your all-star day</span><em class="led">4.75</em></div>
+          <div class="row"><b>Hot Chocolate</b><span>Rich, creamy cocoa perfection</span><em class="led">3.25</em></div>
+        </div>
+        <div class="featured">
+          <h4>Featured</h4>
+          <span class="led">EL TORO<br>CAFE DE OLLA</span>
+          <div class="stars">★★★★★</div>
+          <p>Cinnamon, brown sugar &amp; piloncillo. Slow-brewed bold.</p>
+          <span class="led">5.50</span>
+        </div>
+      </div>
+      <div class="linescore">
+        <span></span><span class="h">1</span><span class="h">2</span><span class="h">3</span><span class="h">4</span><span class="h">5</span><span class="h">6</span><span class="h">7</span><span class="h">8</span><span class="h">9</span><span class="h">R</span><span class="h">H</span><span class="h">E</span>
+        <span class="lbl">Blue Brew</span><span class="c"><span class="led">1</span></span><span class="c"><span class="led">0</span></span><span class="c"><span class="led">2</span></span><span class="c"><span class="led">0</span></span><span class="c"><span class="led">1</span></span><span class="c"><span class="led">0</span></span><span class="c"><span class="led">2</span></span><span class="c"><span class="led">1</span></span><span class="c"><span class="led">0</span></span><span class="c"><span class="led">7</span></span><span class="c"><span class="led">10</span></span><span class="c"><span class="led">1</span></span>
+        <span class="lbl">Visitors</span><span class="c"><span class="led">0</span></span><span class="c"><span class="led">1</span></span><span class="c"><span class="led">0</span></span><span class="c"><span class="led">1</span></span><span class="c"><span class="led">0</span></span><span class="c"><span class="led">0</span></span><span class="c"><span class="led">1</span></span><span class="c"><span class="led">0</span></span><span class="c"><span class="led">0</span></span><span class="c"><span class="led">3</span></span><span class="c"><span class="led">6</span></span><span class="c"><span class="led">2</span></span>
+      </div>
+      <div class="board-foot">All prices are base prices</div>
+    </div>
+  </div>
+</section>
+
+<section id="beans" class="beans">
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--red-lt)">Shop the beans</span>
+    <h2>Take the roast home.</h2>
+    <p class="lead">Three signature blends, $18 per 12 oz bag, roasted fresh by Lucky's in Claremont. Pick the one that fits how you brew: No Hitter for drip, Double Play for cold brew, Grand Slam for espresso.</p>
+    <div class="bean-grid">
+      <div class="bag">
+        <img src="no-hitter.webp" alt="No Hitter Blend 12 oz coffee bag" loading="lazy">
+        <span class="best">☕ Great for Drip</span>
+        <h3>No Hitter Blend</h3><div class="roast">Medium roast</div>
+        <p class="notes">Honey · Almond · Milk Chocolate</p>
+        <dl><div><dt>Origin</dt><dd>Brazil, Mexico &amp; El Salvador</dd></div><div><dt>Process</dt><dd>Natural &amp; Washed</dd></div><div><dt>Size</dt><dd>12 oz (340 g)</dd></div></dl>
+        <div class="bag-buy"><span class="bag-price">$18</span><a href="#book" class="btn btn-light" onclick="askBag('No Hitter Blend')">Order this bag</a></div>
+      </div>
+      <div class="bag">
+        <img src="double-play.webp" alt="Double Play Blend 12 oz coffee bag" loading="lazy">
+        <span class="best">🧊 Great for Cold Brew</span>
+        <h3>Double Play Blend</h3><div class="roast">Medium roast</div>
+        <p class="notes">Brown Sugar · Plum · Nougat</p>
+        <dl><div><dt>Origin</dt><dd>Brazil &amp; Mexico</dd></div><div><dt>Process</dt><dd>Natural &amp; Washed</dd></div><div><dt>Size</dt><dd>12 oz (340 g)</dd></div></dl>
+        <div class="bag-buy"><span class="bag-price">$18</span><a href="#book" class="btn btn-light" onclick="askBag('Double Play Blend')">Order this bag</a></div>
+      </div>
+      <div class="bag">
+        <img src="grand-slam.webp" alt="Grand Slam Blend 12 oz coffee bag" loading="lazy">
+        <span class="best">⚡ Great for Espresso</span>
+        <h3>Grand Slam Blend</h3><div class="roast">Medium-Dark roast</div>
+        <p class="notes">Malt · Dark Chocolate · Walnut</p>
+        <dl><div><dt>Origin</dt><dd>Brazil &amp; El Salvador</dd></div><div><dt>Process</dt><dd>Natural &amp; Washed</dd></div><div><dt>Size</dt><dd>12 oz (340 g)</dd></div></dl>
+        <div class="bag-buy"><span class="bag-price">$18</span><a href="#book" class="btn btn-light" onclick="askBag('Grand Slam Blend')">Order this bag</a></div>
+      </div>
+    </div>
+    <div class="center"><a class="btn btn-light" href="#book">Order beans →</a><p style="color:#c9d9ea;margin-top:12px;font-size:.95rem">Pick up at the shop or the cart, or call/text 949-394-6700.</p></div>
+  </div>
+</section>
+
+<section id="merch">
+  <div class="wrap">
+    <span class="eyebrow">Merch</span>
+    <h2>Rep the home team.</h2>
+    <p class="lead">Blue Brew tees, $25 each in S, M, L and XL. Grab one at the shop or the cart, or pick a size and order below.</p>
+    <div class="tee-grid">
+      <div class="tee" data-tee="black-classic">
+        <div class="tee-img"><img src="tee-black-classic-back.webp" alt="Classic Logo Tee, back view" data-front="tee-black-classic-front.webp" data-back="tee-black-classic-back.webp"></div>
+        <div class="tee-toggle" role="group" aria-label="View"><button type="button" data-side="front">Front</button><button type="button" data-side="back" class="on">Back</button></div>
+        <h3>Classic Logo Tee</h3><div class="tee-color"><i style="background:#111"></i>Black</div>
+        <p>White left-chest logo on the front, full-color Blue Brew badge across the back.</p>
+        <div class="tee-buy"><span class="tee-price">$25</span><div class="sizes" role="group" aria-label="Size"><button type="button">S</button><button type="button" class="on">M</button><button type="button">L</button><button type="button">XL</button></div></div>
+        <a href="#book" class="btn btn-primary" onclick="askTee(this,'Classic Logo Tee')">Order this tee</a>
+      </div>
+      <div class="tee" data-tee="white-mascot">
+        <div class="tee-img"><img src="tee-white-mascot-back.webp" alt="Mascot Tee, back view" data-front="tee-white-mascot-front.webp" data-back="tee-white-mascot-back.webp"></div>
+        <div class="tee-toggle" role="group" aria-label="View"><button type="button" data-side="front">Front</button><button type="button" data-side="back" class="on">Back</button></div>
+        <h3>Mascot Tee</h3><div class="tee-color"><i style="background:#fff"></i>White</div>
+        <p>Blue left-chest logo on the front, Blue Brew badge and our coffee-slinging mascot on the back.</p>
+        <div class="tee-buy"><span class="tee-price">$25</span><div class="sizes" role="group" aria-label="Size"><button type="button">S</button><button type="button" class="on">M</button><button type="button">L</button><button type="button">XL</button></div></div>
+        <a href="#book" class="btn btn-primary" onclick="askTee(this,'Mascot Tee')">Order this tee</a>
+      </div>
+      <div class="tee" data-tee="white-flyball">
+        <div class="tee-img"><img src="tee-white-flyball-back.webp" alt="Fly Ball Tee, back view" data-front="tee-white-flyball-front.webp" data-back="tee-white-flyball-back.webp"></div>
+        <div class="tee-toggle" role="group" aria-label="View"><button type="button" data-side="front">Front</button><button type="button" data-side="back" class="on">Back</button></div>
+        <h3>Fly Ball Tee</h3><div class="tee-color"><i style="background:#fff"></i>White</div>
+        <p>Blue left-chest logo on the front, Blue Brew script with a cup of coffee flying off the bat on the back.</p>
+        <div class="tee-buy"><span class="tee-price">$25</span><div class="sizes" role="group" aria-label="Size"><button type="button">S</button><button type="button" class="on">M</button><button type="button">L</button><button type="button">XL</button></div></div>
+        <a href="#book" class="btn btn-primary" onclick="askTee(this,'Fly Ball Tee')">Order this tee</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="events">
+  <div class="wrap">
+    <span class="eyebrow">Events</span>
+    <h2>Wherever there's a crowd.</h2>
+    <p class="lead">The Blue Brew cart fits right in at almost any gathering, inside or out.</p>
+    <div class="event-grid">
+      <div class="event"><div class="ic">🎂</div><h3>Birthdays</h3><p>Home Run Lattes for the grown-ups, Hot Chocolate for the kids.</p></div>
+      <div class="event"><div class="ic">💍</div><h3>Weddings &amp; quinceañeras</h3><p>A coffee bar your guests will talk about all night.</p></div>
+      <div class="event"><div class="ic">🏢</div><h3>Corporate &amp; office</h3><p>Team meetings, open houses and appreciation days.</p></div>
+      <div class="event"><div class="ic">🏫</div><h3>Schools &amp; fundraisers</h3><p>Staff appreciation, back-to-school nights and booster events.</p></div>
+      <div class="event"><div class="ic">🍼</div><h3>Showers &amp; reveals</h3><p>Custom drinks to match your colors and theme.</p></div>
+      <div class="event"><div class="ic">🎪</div><h3>Festivals &amp; markets</h3><p>Fast service for long lines and big crowds.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="packages" class="steps">
+  <div class="wrap">
+    <span class="eyebrow">Pick your play</span>
+    <h2>Cart packages.</h2>
+    <p class="lead">Every package includes the cart, setup and cleanup, and a friendly barista.</p>
+    <div class="pkg-grid">
+      <div class="pkg">
+        <h3>Base Hit</h3><div class="hours">2 hours</div>
+        <ul><li>Espresso drinks &amp; drip coffee</li><li>2 flavor syrups</li><li>Cups, lids &amp; sleeves</li><li>Setup &amp; cleanup</li></ul>
+        <div class="price">Ask for a quote</div>
+        <a href="#book" class="btn btn-ghost" onclick="pickPkg('Base Hit')">Book Base Hit</a>
+      </div>
+      <div class="pkg fav">
+        <span class="flag">FAN FAVORITE</span>
+        <h3>Home Run</h3><div class="hours">3 hours</div>
+        <ul><li>Everything in Base Hit</li><li>Cold Brew &amp; Benny the Jet Fuel</li><li>4 flavor syrups</li><li>One custom signature drink</li></ul>
+        <div class="price">Ask for a quote</div>
+        <a href="#book" class="btn btn-primary" onclick="pickPkg('Home Run')">Book Home Run</a>
+      </div>
+      <div class="pkg">
+        <h3>Grand Slam</h3><div class="hours">4+ hours</div>
+        <ul><li>Everything in Home Run</li><li>Full specialty menu</li><li>El Toro Cafe de Olla &amp; Hot Chocolate</li><li>Custom cup stickers or signage</li></ul>
+        <div class="price">Ask for a quote</div>
+        <a href="#book" class="btn btn-ghost" onclick="pickPkg('Grand Slam')">Book Grand Slam</a>
+      </div>
+    </div>
+    <p class="note">Pricing depends on your date, location and guest count. Tell us about your event and we'll send a quote.</p>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap">
+    <span class="eyebrow">Why Blue Brew</span>
+    <h2>Built for game day.</h2>
+    <div class="why-grid">
+      <div class="why-card"><div class="ic">🔥</div><h3>Our own blends</h3><p>Three signature blends, roasted fresh in small batches.</p></div>
+      <div class="why-card"><div class="ic">⚾</div><h3>The vibe</h3><p>A ballpark look that makes the coffee bar part of the party.</p></div>
+      <div class="why-card"><div class="ic">🙋</div><h3>Real baristas</h3><p>Friendly pros who make every drink to order.</p></div>
+      <div class="why-card"><div class="ic">🧼</div><h3>Clean &amp; easy</h3><p>We handle setup, service and cleanup. You just enjoy the event.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div style="text-align:center"><span class="eyebrow">Before the first pitch</span><h2>Questions? We've got answers.</h2></div>
+    <div class="faq-list">
+      <details><summary>How much space does the cart need?</summary><p>A flat, level area roughly 8 by 8 feet works well, with room for a line to form. Let us know your space and we'll confirm it fits.</p></details>
+      <details><summary>Do you need power or water?</summary><p>Access to a standard outlet nearby is ideal. Tell us about your venue when you book and we'll work out the details.</p></details>
+      <details><summary>Can you set up outdoors?</summary><p>Yes. Patios, parks, parking lots and backyards are all fair game. For hot or windy days, some shade is a plus.</p></details>
+      <details><summary>What areas do you serve?</summary><p>Our home base is 1945 E Riverside Dr, Suite 3A, in Ontario, right next door to Ontario Coin Laundromat. We serve the Inland Empire and nearby areas. Ask about events farther out.</p></details>
+      <details><summary>How far ahead should I book?</summary><p>Weekends fill up fast, so booking 3 to 4 weeks ahead is best. Reach out anyway if your date is sooner. We'll do our best to fit you in.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="book" class="book">
+  <div class="wrap book-grid">
+    <div>
+      <span class="eyebrow" style="color:var(--red-lt)">Book the cart</span>
+      <h2>Let's play ball.</h2>
+      <p class="lead">Tell us about your event and we'll get back to you with availability and a quote.</p>
+      <div class="info">
+        <div>📍<span><b>Home base</b><a href="https://www.google.com/maps/search/?api=1&amp;query=1945+E+Riverside+Dr+Suite+3A+Ontario+CA+91761" target="_blank" rel="noopener">1945 E Riverside Dr, Suite 3A<br>Ontario, CA 91761</a><br><small style="opacity:.8">Next door to Ontario Coin Laundromat · Serving the Inland Empire</small></span></div>
+        <div>📞<span><b>Call or text</b><a href="tel:+19493946700">949-394-6700</a></span></div>
+        <div>✉️<span><b>Email</b><a href="mailto:info@bluebrewcoffeeroasters.com">info@bluebrewcoffeeroasters.com</a></span></div>
+        <div>📸<span><b>Instagram</b><a href="https://instagram.com/blue_brew_coffee_roasters" target="_blank" rel="noopener">@blue_brew_coffee_roasters</a></span></div>
+        <div>⏰<span><b>Response time</b>Usually within 1 business day</span></div>
+      </div>
+    </div>
+    <form id="bookForm">
+      <label>Name<input name="Name" required></label>
+      <label>Email<input name="Email" type="email" required></label>
+      <label>Phone<input name="Phone" type="tel"></label>
+      <label>Event type
+        <select name="Event type"><option>Birthday</option><option>Wedding / Quinceañera</option><option>Corporate</option><option>School / Fundraiser</option><option>Shower / Reveal</option><option>Festival / Market</option><option>Other</option></select>
+      </label>
+      <label>Event date<input name="Date" type="date" required></label>
+      <label>Start time<input name="Time" type="time"></label>
+      <label>City<input name="City"></label>
+      <label>Guest count<input name="Guests" type="number" min="1"></label>
+      <label class="full">Package
+        <select name="Package" id="pkgSelect"><option>Not sure yet</option><option>Base Hit (2 hrs)</option><option>Home Run (3 hrs)</option><option>Grand Slam (4+ hrs)</option></select>
+      </label>
+      <label class="full">Anything else?<textarea name="Details" placeholder="Venue, theme, drink ideas..."></textarea></label>
+      <button class="btn btn-primary full" type="submit">Check availability →</button>
+      <div class="result" id="result">
+        <b>Your request is ready to send.</b> Email it to <b>info@bluebrewcoffeeroasters.com</b> or text it to <b>949-394-6700</b>:
+        <pre id="summary"></pre>
+        <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-primary" id="mailBtn" href="mailto:info@bluebrewcoffeeroasters.com">Email this request</a><button type="button" class="btn btn-ghost" id="copyBtn">Copy request</button></div>
+      </div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div><img src="logo-badge.webp" alt="Blue Brew Coffee Roasters" style="height:70px;width:auto;display:block;margin-bottom:10px"><div><a href="https://www.google.com/maps/search/?api=1&amp;query=1945+E+Riverside+Dr+Suite+3A+Ontario+CA+91761" target="_blank" rel="noopener">1945 E Riverside Dr, Suite 3A, Ontario, CA 91761</a></div><div style="margin-top:6px">@blue_brew_coffee_roasters</div><div style="margin-top:6px"><a href="tel:+19493946700">949-394-6700</a> · <a href="mailto:info@bluebrewcoffeeroasters.com">info@bluebrewcoffeeroasters.com</a></div></div>
+      <div class="foot-links">
+        <a href="#menu">Menu</a><a href="#beans">Beans</a><a href="#merch">Merch</a><a href="#events">Events</a><a href="#packages">Packages</a><a href="#faq">FAQ</a><a href="#book">Book</a><a href="https://instagram.com/blue_brew_coffee_roasters" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="copy"><span>© 2026 Blue Brew Coffee Roasters</span><span>Roasted with ⚾ in the Inland Empire</span></div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.tee-toggle button').forEach(b=>b.addEventListener('click',()=>{
+  const card=b.closest('.tee'),img=card.querySelector('img'),side=b.dataset.side;
+  img.src=img.dataset[side]; img.alt=card.querySelector('h3').textContent+', '+side+' view';
+  card.querySelectorAll('.tee-toggle button').forEach(x=>x.classList.toggle('on',x===b));
+}));
+document.querySelectorAll('.sizes button').forEach(b=>b.addEventListener('click',()=>{b.parentNode.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b))}));
+function askBag(n){const t=document.querySelector('textarea[name="Details"]');if(t){const line='Coffee order: '+n+', 12 oz bag ($18)';t.value=t.value?t.value+'\n'+line:line}}
+function askTee(el,n){const sz=el.closest('.tee').querySelector('.sizes .on').textContent;const t=document.querySelector('textarea[name="Details"]');if(t){const line='Tee order: '+n+', size '+sz+' ($25)';t.value=t.value?t.value+'\n'+line:line}}
+function pickPkg(name){
+  const s=document.getElementById('pkgSelect');
+  [...s.options].forEach((o,i)=>{if(o.text.startsWith(name))s.selectedIndex=i});
+}
+document.getElementById('bookForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const fd=new FormData(e.target);
+  let t='Blue Brew cart booking request\n';
+  for(const [k,v] of fd.entries()) if(v) t+=`${k}: ${v}\n`;
+  document.getElementById('summary').textContent=t;
+  document.getElementById('mailBtn').href='mailto:info@bluebrewcoffeeroasters.com?subject='+encodeURIComponent('Blue Brew request')+'&body='+encodeURIComponent(t);
+  document.getElementById('result').style.display='block';
+});
+document.getElementById('copyBtn').addEventListener('click',async e=>{
+  try{await navigator.clipboard.writeText(document.getElementById('summary').textContent);e.target.textContent='Copied ✓'}
+  catch(err){e.target.textContent='Select the text above to copy'}
+});
+</script>
+</body>
+</html>
